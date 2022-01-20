@@ -1,8 +1,13 @@
 const express = require("express");
 const { ApolloServer, gql } = require("apollo-server-express");
+require("dotenv").config();
+
+const db = require("./db");
 
 // run server on PORT from .env file or 4000
 const port = process.env.PORT || 4000;
+
+const DB_HOST = process.env.DB_HOST;
 
 let notes = [
   { id: "1", content: "This is a note", author: "Adam Scott" },
@@ -52,6 +57,9 @@ const resolvers = {
 };
 
 const app = express();
+
+// connect to the DB
+db.connect(DB_HOST);
 
 // Apollo Server setup
 const server = new ApolloServer({ typeDefs, resolvers });
