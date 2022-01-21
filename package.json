@@ -18,10 +18,13 @@
   "homepage": "https://github.com/Eliezer-Barbosa/notedly-app#readme",
   "dependencies": {
     "apollo-server-express": "2.4.0",
+    "bcrypt": "^3.0.6",
     "dotenv": "6.1.0",
     "express": "^4.16.4",
     "graphql": "^14.1.1",
     "graphql-iso-date": "^3.6.1",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.2.1",
     "mongoose": "^5.7.13",
     "nodemon": "^2.0.15"
   }
