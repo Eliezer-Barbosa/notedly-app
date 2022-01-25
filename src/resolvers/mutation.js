@@ -4,15 +4,22 @@ const {
   AuthenticationError,
   ForbiddenError,
 } = require("apollo-server-express");
+const mongoose = require("mongoose");
 require("dotenv").config();
 
 const gravatar = require("../util/gravatar");
 
 module.exports = {
-  newNote: async (parent, args, { models }) => {
+  // add the user context
+  newNote: async (parent, args, { models, user }) => {
+    // if there is no user in the context, throw an authentication error
+    if (!user) {
+      throw new AuthenticationError("You must be signed in to create a note");
+    }
     return await models.Note.create({
       content: args.content,
-      author: "Adam Scott",
+      // reference that author's mongo id
+      author: mongoose.Types.ObjectId(user.id),
     });
   },
   deleteNote: async (parent, { id }, { models }) => {
