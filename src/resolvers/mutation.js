@@ -1,10 +1,10 @@
+const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const {
   AuthenticationError,
   ForbiddenError,
 } = require("apollo-server-express");
-const mongoose = require("mongoose");
 require("dotenv").config();
 
 const gravatar = require("../util/gravatar");
@@ -30,7 +30,7 @@ module.exports = {
     // find the note
     const note = await models.Note.findById(id);
     // if the note owner and current user don't match, throw a forbidden error
-    if (note && String(note.author) != user.id) {
+    if (note && String(note.author) !== user.id) {
       throw new ForbiddenError(
         "You do not have permissions to delete the note"
       );
@@ -52,7 +52,7 @@ module.exports = {
     // find the note
     const note = await models.Note.findById(id);
     // if the note owner and current user don't match, throw a forbidden error
-    if (note && String(note.author) != user.id) {
+    if (note && String(note.author) !== user.id) {
       throw new ForbiddenError(
         "You do not have permissions to update the note"
       );
