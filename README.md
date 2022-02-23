@@ -1,1 +1,1 @@
-# notedly-app
+# notedly-app-API
